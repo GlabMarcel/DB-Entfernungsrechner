@@ -1,5 +1,9 @@
 package com.example.distancecalculator;
 
+/**
+ * This class defines a station based on the description from the task.
+ * It contains getter and setter functions
+ */
 public class Station {
 
     private int EVA_NR, operatorID;
@@ -101,9 +105,5 @@ public class Station {
 
     public void setLatitude(double latitude) {
         this.latitude = latitude;
-    }
-    @Override
-    public String toString() {
-        return "Station [name=" + name +"]";
     }
 }

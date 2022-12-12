@@ -7,7 +7,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -56,34 +55,24 @@ public class CSVReader {
      */
     private Station createStation(String[] data){
         //init variables for creation of a Station
-        int EVA_NR = 0;
-        int operatorID = 0;
-        double longitude = 0;
-        double latitude = 0;
+        Integer EVA_NR = null;
+        Integer operatorID = null;
+        Double longitude = null;
+        Double latitude = null;
         String status = " ";
         //validate data
         if (isNumeric(data[0])){
             EVA_NR = Integer.parseInt(data[0]);
-        }else {
-            EVA_NR = Integer.MAX_VALUE; //if invalid set it to max int value
         }
         if (isNumeric(data[8])){
             operatorID = Integer.parseInt(data[8]);
-        }else {
-            operatorID = Integer.MAX_VALUE;
         }
         if (isNumeric(data[5].replace(",","."))){ //replace comma with dots as its needed for correct parsing
             longitude = Double.parseDouble(data[5].replace(",","."));
-        }else {
-            longitude = Double.MAX_VALUE;
-
         }
         if (isNumeric(data[6].replace(",","."))){
             latitude = Double.parseDouble(data[6].replace(",","."));
-        }else {
-            latitude = Double.MAX_VALUE;
         }
-
             String DS100 = data[1];
             String IFOPT = data[2];
             String name = data[3];
@@ -91,7 +80,7 @@ public class CSVReader {
             String operatorName = data[7];
 
             if (data.length <= 10){
-                status = " ";
+                status = null;
             }else {
                 status = data[9];
             }

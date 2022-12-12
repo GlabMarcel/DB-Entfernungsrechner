@@ -6,16 +6,16 @@ package com.example.distancecalculator;
  */
 public class Station {
 
-    private int EVA_NR, operatorID;
+    private Integer EVA_NR, operatorID;
     private String DS100;
     private String IFOPT;
     private String name;
     private String traffic;
     private String operatorName;
     private String status;
-    private double longitude, latitude;
+    private Double longitude, latitude;
 
-    public Station(int EVA_NR, int operatorID, String DS100, String IFOPT, String name, String traffic, String operatorName, String status, double longitude, double latitude) {
+    public Station(Integer EVA_NR, Integer operatorID, String DS100, String IFOPT, String name, String traffic, String operatorName, String status, Double longitude, Double latitude) {
         this.EVA_NR = EVA_NR;
         this.operatorID = operatorID;
         this.DS100 = DS100;
@@ -27,7 +27,7 @@ public class Station {
         this.longitude = longitude;
         this.latitude = latitude;
     }
-    public int getEVA_NR() {
+    public Integer getEVA_NR() {
         return EVA_NR;
     }
 
@@ -35,7 +35,7 @@ public class Station {
         this.EVA_NR = EVA_NR;
     }
 
-    public int getOperatorID() {
+    public Integer getOperatorID() {
         return operatorID;
     }
 
@@ -91,7 +91,7 @@ public class Station {
         this.status = status;
     }
 
-    public double getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
@@ -99,7 +99,7 @@ public class Station {
         this.longitude = longitude;
     }
 
-    public double getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 

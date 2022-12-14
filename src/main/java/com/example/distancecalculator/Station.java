@@ -27,11 +27,12 @@ public class Station {
         this.longitude = longitude;
         this.latitude = latitude;
     }
+
     public Integer getEVA_NR() {
         return EVA_NR;
     }
 
-    public void setEVA_NR(int EVA_NR) {
+    public void setEVA_NR(Integer EVA_NR) {
         this.EVA_NR = EVA_NR;
     }
 
@@ -39,7 +40,7 @@ public class Station {
         return operatorID;
     }
 
-    public void setOperatorID(int operatorID) {
+    public void setOperatorID(Integer operatorID) {
         this.operatorID = operatorID;
     }
 
@@ -95,7 +96,7 @@ public class Station {
         return longitude;
     }
 
-    public void setLongitude(double longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 
@@ -103,7 +104,7 @@ public class Station {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 }

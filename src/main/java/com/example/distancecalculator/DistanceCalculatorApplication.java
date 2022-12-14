@@ -1,17 +1,17 @@
 package com.example.distancecalculator;
 
+import org.json.simple.JSONObject;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.*;
-import org.json.simple.JSONObject;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
  * Main application calculating the distance between two Stations in km.
- * Data containing has been provided from https://data.deutschebahn.com/dataset/data-haltestellen.html#
+ * Data containing has been provided from <a href="https://data.deutschebahn.com/dataset/data-haltestellen.html#">Deutsche Bahn </a>
  *
  * @author Marcel Glab
  * @version 1.0
@@ -24,7 +24,7 @@ public class DistanceCalculatorApplication {
     /**
      * @link stations is where each Station is storaged in
      */
-    public static List<Station> stations;
+    public static Map<String, Station> stations;
 
     /**
      * initialize spring application, prepare the data from the CSV
@@ -50,24 +50,19 @@ public class DistanceCalculatorApplication {
      */
     @RequestMapping(path = "/api/v1/distance/{startDS100}/{destinationDS100}")
     public JSONObject createTripInfoJSON(@PathVariable String startDS100, @PathVariable String destinationDS100) {
-        // Use a map to store the stations and their DS100 codes
-        Map<String, Station> stationsMap = new HashMap<>();
-        for (Station station : stations) {
-            // Add each station to the map using its DS100 code as the key
-            stationsMap.put(station.getDS100(), station);
-        }
+
         // Look up the depart and arrive stations using their DS100 codes
-        Station depart = stationsMap.get(startDS100);
-        Station arrive = stationsMap.get(destinationDS100);
+        Station depart = stations.get(startDS100);
+        Station arrive = stations.get(destinationDS100);
         // Create a JSON object to store the trip information
         JSONObject tripInfo = new JSONObject();
         // Add the depart and arrive station names to the JSON object
         tripInfo.put("from", depart.getName());
         tripInfo.put("to", arrive.getName());
-        // Add the unit of distance (e.g. km) to the JSON object
-        tripInfo.put("unit: ", "km");
         // Add the distance between the depart and arrive stations to the JSON object
         tripInfo.put("distance", calculateDistanceBetweenCoordinates(depart, arrive));
+        // Add the unit of distance (e.g. km) to the JSON object
+        tripInfo.put("unit: ", "km");
         // Return the JSON object
         return tripInfo;
     }
@@ -98,8 +93,9 @@ public class DistanceCalculatorApplication {
             double latitudeDestination = Math.toRadians(destination.getLatitude());
 
             // Calculate the distance between the two stations using the Haversine formula
-            double tmp = Math.sin(deltaLatitude / 2) * Math.sin(deltaLatitude / 2) + Math.sin(deltaLongitude / 2) * Math.sin(deltaLongitude / 2) * Math.cos(latitudeStart) * Math.cos(latitudeDestination);
+            double tmp = Math.pow(Math.sin(deltaLatitude / 2), 2) + Math.pow(Math.sin(deltaLongitude / 2), 2) * Math.cos(latitudeStart) * Math.cos(latitudeDestination);
             double tmp2 = Math.atan2(Math.sqrt(tmp), Math.sqrt(1 - tmp));
+
             return (int) Math.round(EARTH_RADIUS_IN_KM * tmp2);
         } else {
             //If either start or destination was null return 0

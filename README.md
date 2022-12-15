@@ -1,4 +1,4 @@
-# DB-Distance-Calculator
+# DB-Entfernungsrechner
 
 This is a Java Spring Boot back end web application that estimates the distance between two stations.
 It returns a Json string when using following API
@@ -7,11 +7,11 @@ It returns a Json string when using following API
 
 ## Getting Started
 
-To get started with the DB-Distance-Calculator, clone the repository and run the application using Spring Boot.
+To get started with the DB-Entfernungsrechner, clone the repository and run the application using Spring Boot.
 
-`git clone https://github.com/GlabMarcel/DB-Distance-Calculator.git`
+`git clone https://github.com/GlabMarcel/DB-Entfernungsrechner.git`
 
-`cd DB-Distance-Calculator`
+`cd DB-Entfernungsrechner`
 
 `./mvnw spring-boot:run`
 

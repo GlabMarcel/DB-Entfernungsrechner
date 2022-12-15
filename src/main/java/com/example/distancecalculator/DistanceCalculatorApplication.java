@@ -33,7 +33,8 @@ public class DistanceCalculatorApplication {
      * initialize spring application, prepare the data from the CSV
      */
     public static void main(String[] args) {
-
+        // Initialize the stations field
+        stations = new HashMap<>();
         SpringApplication.run(DistanceCalculatorApplication.class, args);
         CSVReader csvReader = new CSVReader();
         stations = csvReader.readStationsFromCSV("src/D_Bahnhof_2020_alle.csv");
@@ -97,8 +98,7 @@ public class DistanceCalculatorApplication {
 
             // Calculate the distance between the two stations using the Haversine formula
             double tmp = Math.pow(Math.sin(deltaLatitude / 2), 2) + Math.pow(Math.sin(deltaLongitude / 2), 2) * Math.cos(latitudeStart) * Math.cos(latitudeDestination);
-            double tmp2 = Math.atan2(Math.sqrt(tmp), Math.sqrt(1 - tmp));
-
+            double tmp2 = 2 * Math.atan2(Math.sqrt(tmp), Math.sqrt(1 - tmp));
             return (int) Math.round(EARTH_RADIUS_IN_KM * tmp2);
         } else {
             //If either start or destination was null return 0

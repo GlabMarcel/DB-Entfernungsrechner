@@ -20,6 +20,9 @@ public class CSVReader {
      * @return Returns true if string is a numeric value returns false if it's not
      */
     public static boolean isNumeric(String str) {
+        if (str == null) {
+            return false;
+        }
         try {
             Double.parseDouble(str);
             return true;
@@ -69,7 +72,7 @@ public class CSVReader {
      * @param data - See description above
      * @return - Returns The freshly created station based on the given data
      */
-    private Station createStation(String[] data) {
+    Station createStation(String[] data) {
         //init a station with null attributes for creation
         Station newStation = new Station(null, null, null, null, null
                 , null, null, null, null, null);
@@ -93,7 +96,7 @@ public class CSVReader {
         newStation.setTraffic(data[4]);
         newStation.setOperatorName(data[7]);
 
-        if (data.length <= 10) {
+        if (data.length < 10) {
             newStation.setStatus(null);
         } else {
             newStation.setStatus(data[9]);

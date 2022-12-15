@@ -7,7 +7,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Class handling the reading of the data from CSV
@@ -35,8 +34,8 @@ public class CSVReader {
      * @param fileName name of the CSV file
      * @return returns a List of all Stations
      */
-    public Map<String, Station> readStationsFromCSV(String fileName) {
-        Map<String, Station> stations = new HashMap<>();
+    public HashMap<String, Station> readStationsFromCSV(String fileName) {
+        HashMap<String, Station> stations = new HashMap<>();
         Path pathOfFile = Paths.get(fileName);
         try (BufferedReader bufferedReader = Files.newBufferedReader(pathOfFile, StandardCharsets.UTF_8)) {
             String line = bufferedReader.readLine();

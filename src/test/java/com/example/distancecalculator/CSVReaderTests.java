@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
-public class CSVReaderTest {
+public class CSVReaderTests {
     @Test
     public void testIsNumeric() {
         // Test that the isNumeric method returns true for numeric strings

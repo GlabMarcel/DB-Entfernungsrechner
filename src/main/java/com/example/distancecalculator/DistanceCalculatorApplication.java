@@ -58,6 +58,10 @@ public class DistanceCalculatorApplication {
         // Look up the departure and arrive stations using their DS100 codes
         Station depart = stations.get(startDS100);
         Station arrive = stations.get(destinationDS100);
+
+        if (depart == null || arrive == null) {
+            throw new NullPointerException("Depart or arrive are null");
+        }
         // Create a JSON object to store the trip information
         JSONObject tripInfo = new JSONObject();
         // Add the departure and arrive station names to the JSON object
@@ -86,7 +90,7 @@ public class DistanceCalculatorApplication {
         if (start != null && destination != null) {
             // Check if the start or destination station are null or if their latitude or longitude are null
             if (start.getLatitude() == null || start.getLongitude() == null || destination.getLatitude() == null || destination.getLongitude() == null) {
-                return 0;
+                throw new NullPointerException("Latitude or longitude are null ");
             }
             // Calculate the difference in latitude and longitude between the start and destination stations
             double deltaLatitude = Math.toRadians(destination.getLatitude() - start.getLatitude());
@@ -102,9 +106,8 @@ public class DistanceCalculatorApplication {
             return (int) Math.round(EARTH_RADIUS_IN_KM * tmp2);
         } else {
             //If either start or destination was null return 0
-            return 0;
+            throw new NullPointerException("Start or destination is null ");
+
         }
     }
-
-
 }
